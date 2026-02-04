@@ -14,8 +14,20 @@
 #    limitations under the License.
 #
 
-FROM openjdk:17.0.2
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
-RUN ./mvnw clean package
-CMD ./mvnw cargo:run -P tomcat90
+# ---- Build Stage ----
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
+WORKDIR /build
+COPY . .
+RUN mvn clean package -DskipTests
+
+# ---- Runtime Stage ----
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+
+# copy built artifact
+COPY --from=builder /build/target/*.war app.war
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.war"]
+
