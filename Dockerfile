@@ -14,20 +14,18 @@
 #    limitations under the License.
 #
 
-# ---- Build Stage ----
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
-WORKDIR /build
-COPY . .
-RUN mvn clean package -DskipTests
+# Use a lightweight Tomcat image
+FROM tomcat:9.0-jdk17-openjdk-slim
 
-# ---- Runtime Stage ----
-FROM eclipse-temurin:17-jre
-WORKDIR /app
+# Remove default Tomcat apps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# copy built artifact
-COPY --from=builder /build/target/*.war app.war
+# Copy the WAR file already built by Jenkins into the Tomcat webapps folder
+# This assumes your Jenkins Maven build creates a .war in the target folder
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.war"]
+CMD ["catalina.sh", "run"]
+
 
