@@ -14,18 +14,17 @@
 #    limitations under the License.
 #
 
-# Use a lightweight Tomcat image
-FROM tomcat:9.0-jdk17-openjdk-slim
+# Use a newer version of Tomcat and Java 17 (Temurin is well-patched)
+FROM tomcat:9.0-jre17-temurin
 
-# Remove default Tomcat apps
+# Remove default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy the WAR file already built by Jenkins into the Tomcat webapps folder
-# This assumes your Jenkins Maven build creates a .war in the target folder
+# Copy your WAR file (Built by Jenkins) into Tomcat
+# Ensure this path matches where your Maven build puts the WAR
 COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
-
 
