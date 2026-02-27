@@ -3,28 +3,55 @@ kind: Deployment
 metadata:
   name: petshop
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: petshop
-  replicas: 1 
-  template: 
+  template:
     metadata:
       labels:
         app: petshop
     spec:
       containers:
       - name: petshop
-        image: youngyz1/petshop:latest
+        image: youngyz1/petstore:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
+        startupProbe:
+          httpGet:
+            path: /jpetstore
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /jpetstore
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /jpetstore
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          failureThreshold: 3
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: petshop
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: petshop
   ports:
@@ -32,3 +59,4 @@ spec:
     protocol: TCP
     port: 80
     targetPort: 8080
+    nodePort: 30080
