@@ -1,4 +1,6 @@
 # DevSecOps PetStore CI/CD Pipeline
+<img width="959" height="470" alt="image (35)" src="https://github.com/user-attachments/assets/5fa625e1-a6bb-415b-9461-a794aaf565b8" />
+
 
 > A production-ready, security-first CI/CD pipeline for the JPetStore application using Jenkins, Kubernetes, Docker, and modern DevSecOps practices.
 
@@ -7,6 +9,8 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## 🚀 Quick Overview
+<img width="574" height="272" alt="image" src="https://github.com/user-attachments/assets/e277fe64-7463-4439-918f-d34a19ccee00" />
+
 
 This project demonstrates a complete DevSecOps pipeline that automates building, testing, securing, and deploying the JPetStore application to Kubernetes. Security is integrated at every stage—not bolted on at the end.
 
@@ -123,6 +127,8 @@ Health Checks & Auto-Scaling
 - 3 EC2 instances (t3.xlarge for Jenkins, t3.large for K8s nodes)
 - VPC with proper security groups
 - AWS credentials configured
+  <img width="959" height="311" alt="image (19)" src="https://github.com/user-attachments/assets/00ab3226-812b-4d97-8a7a-f27ca5487448" />
+
 
 ### Tools Required
 - Jenkins 2.452+
@@ -172,6 +178,9 @@ bash /root/k8s-join-command.sh
 3. Copy pipeline script from `Jenkinsfile`
 4. Configure credentials (Docker Hub, SonarQube, etc.)
 5. Trigger build
+<img width="959" height="359" alt="image (32)" src="https://github.com/user-attachments/assets/19dd8a36-0b3e-4a5f-9eae-e20e7f69bd4e" />
+
+
 
 ### 6. Access Application
 ```
@@ -179,6 +188,8 @@ Application URL: http://your-ip:8081/jpetstore
 Jenkins: http://your-ip:8090
 SonarQube: http://your-ip:9000
 ```
+<img width="959" height="470" alt="image (35)" src="https://github.com/user-attachments/assets/579f7e50-9298-43df-aaa2-fb979fffa8ae" />
+
 
 ## 📚 Documentation
 
@@ -201,6 +212,8 @@ SonarQube: http://your-ip:9000
 8. Push to Hub          // Push to Docker Hub
 9. Deploy to K8s        // Deploy to Kubernetes
 ```
+<img width="959" height="472" alt="image (31)" src="https://github.com/user-attachments/assets/d6396ec0-c7ad-428a-ad3c-fbafe72fa932" />
+
 
 ### Environment Variables
 ```bash
@@ -235,6 +248,8 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 ```
+<img width="882" height="422" alt="image (37)" src="https://github.com/user-attachments/assets/d086a9cd-3f6f-4bc3-bbc8-37bec568e7d2" />
+
 
 **Q: Docker permission denied**
 ```bash
@@ -248,12 +263,16 @@ sudo systemctl restart jenkins
 # Get NVD API key from https://nvd.nist.gov/developers/request-an-api-key
 # Add to pipeline: --nvdApiKey YOUR_API_KEY
 ```
+<img width="956" height="465" alt="image (27)" src="https://github.com/user-attachments/assets/fc5e64f5-6185-4b1a-b84c-6cd4cf91e442" />
+
 
 **Q: Kubernetes nodes NotReady**
 ```bash
 kubectl describe nodes
 kubectl get pods -n kube-system | grep cilium
 ```
+<img width="888" height="95" alt="image (34)" src="https://github.com/user-attachments/assets/d55627b7-3d8b-4bdf-80da-b68a56b28139" />
+
 
 See [Troubleshooting Guide](./docs/DevSecOps-Troubleshooting-Guide.md) for more solutions.
 
@@ -309,8 +328,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 **Youngyz1** - DevOps Engineer & Security Enthusiast
 
 - GitHub: [@Youngyz1](https://github.com/Youngyz1)
-- LinkedIn: [Your LinkedIn Profile]
-- Email: your.email@example.com
+- LinkedIn: [(https://www.linkedin.com/in/ohia-uche-10ba3b223/))](https://www.linkedin.com/in/ohia-uche-10ba3b223/)
+- Email: uche2net@gmail.com
 
 ## 🙏 Acknowledgments
 
